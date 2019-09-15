@@ -24,4 +24,5 @@ bool DesignServer::init() {
 
 void DesignServer::run() {
     cout << "server running ..." << endl;
+//    cout << db_control_->getOneData("users:0", "pwd") << endl;
 }

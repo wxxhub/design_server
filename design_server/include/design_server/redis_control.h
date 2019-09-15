@@ -7,6 +7,9 @@
 
 #include <string>
 
+#include <vector>
+#include <map>
+
 #include <Poco/Redis/Client.h>
 #include <Poco/Redis/Array.h>
 
@@ -21,11 +24,12 @@ public:
     ~RedisControl(){};
     bool init();
 
+    std::string getOneData(const std::string table_name, const std::string item);
 private:
     Poco::Redis::Client client_;
 
     bool authenticate(Poco::Redis::Client &client, const std::string& pwd);
-    std::string getAllResponse(Poco::Redis::Client &client);
+    std::map<std::string, std::string> getHashAll(Poco::Redis::Client &client, const std::string& name);
     std::string getHashItem(Poco::Redis::Client &client, const std::string& name, const std::string& item);
 };
 
