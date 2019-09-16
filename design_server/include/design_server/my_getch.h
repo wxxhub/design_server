@@ -24,7 +24,7 @@ int myGetChar()
 
 std::string getPwd()
 {
-    std::string result;
+    std::string result = "";
     char pwd[36];
     int c, n = 0;
 
@@ -42,6 +42,9 @@ std::string getPwd()
             }
         }
     }
+
+    if (n == 0)
+        return "";
 
     pwd[n] = '\0';//消除一个多余的回车
 

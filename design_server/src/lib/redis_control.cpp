@@ -80,10 +80,12 @@ string RedisControl::getHashItem(Poco::Redis::Client &client, const std::string&
 
     cmd << "HGET" << name << item;
 
+    string result = "";
     BulkString response;
 
     try {
         response = client.execute<BulkString>(cmd);
+        result = response.value();
     } catch (Poco::BadCastException &e) {
         cout << e.displayText() << endl;
     } catch (Poco::Redis::RedisException &e) {
@@ -92,5 +94,5 @@ string RedisControl::getHashItem(Poco::Redis::Client &client, const std::string&
         return "";
     }
 
-    return response;
+    return result;
 }
